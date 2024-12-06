@@ -19,3 +19,16 @@ public:
         sprite.setScale(scale, scale);
         sprite.setPosition(700, 550);
     }
+    void moveLeft() { sprite.move(-speed, 0); }
+    void moveRight() { sprite.move(speed, 0); }
+    void draw(RenderWindow& window) const { window.draw(sprite); }
+    FloatRect getGlobalBounds() const { return sprite.getGlobalBounds(); }
+    Vector2f getPosition() const { return sprite.getPosition(); }
+    void setPosition(const Vector2f& position) { sprite.setPosition(position); }
+
+    FloatRect getRefinedBounds() const {
+        FloatRect bounds = sprite.getGlobalBounds();
+        return FloatRect(bounds.left + 10, bounds.top + 8, bounds.width - 2 * 10, bounds.height - 2 * 8);
+    }
+};
+
