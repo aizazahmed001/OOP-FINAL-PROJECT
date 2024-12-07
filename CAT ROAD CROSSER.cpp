@@ -32,3 +32,30 @@ public:
     }
 };
 
+class Car {
+private:
+    Sprite sprite;
+    Texture texture;
+    float speed;
+
+public:
+    Car(const string& textureFile, float x, float y, float speed, float scale) : speed(speed) {
+        if (!texture.loadFromFile(textureFile)) {
+            cerr << "Error loading car texture" << endl;
+        }
+        sprite.setTexture(texture);
+        sprite.setScale(scale, scale);
+        sprite.setPosition(x, y);
+    }
+
+    void move(float dt) { sprite.move(0, speed * dt); }
+    void draw(RenderWindow& window) const { window.draw(sprite); }
+    FloatRect getGlobalBounds() const { return sprite.getGlobalBounds(); }
+    void setPosition(const Vector2f& position) { sprite.setPosition(position); }
+    Vector2f getPosition() const { return sprite.getPosition(); }
+
+    FloatRect getRefinedBounds() const {
+        FloatRect bounds = sprite.getGlobalBounds();
+        return FloatRect(bounds.left + 20, bounds.top + 15, bounds.width - 2 * 20, bounds.height - 2 * 15);
+    }
+};
