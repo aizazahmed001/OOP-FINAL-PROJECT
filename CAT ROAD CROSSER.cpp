@@ -18,6 +18,9 @@ public:
         sprite.setTexture(texture);
         sprite.setScale(scale, scale);
         sprite.setPosition(700, 550);
+<<<<<<<<< Temporary merge branch 1
+    }
+=========
     }
     void moveLeft() { sprite.move(-speed, 0); }
     void moveRight() { sprite.move(speed, 0); }
@@ -32,30 +35,68 @@ public:
     }
 };
 
-class Car {
+class Menu {
 private:
-    Sprite sprite;
-    Texture texture;
-    float speed;
+    Font font;
+    Text title;
+    RectangleShape startButton;
+    Text startButtonText;
+    RectangleShape restartButton;
+    Text restartButtonText;
+    RectangleShape quitButton;
+    Text quitButtonText;
 
 public:
-    Car(const string& textureFile, float x, float y, float speed, float scale) : speed(speed) {
-        if (!texture.loadFromFile(textureFile)) {
-            cerr << "Error loading car texture" << endl;
+    Menu() {
+        if (!font.loadFromFile("C:/Users/Aizaz Khan/Documents/CAT ROAD CROSSER/font/BungeeSpice-Regular.ttf")) {
+            cerr << "Error loading font" << endl;
         }
-        sprite.setTexture(texture);
-        sprite.setScale(scale, scale);
-        sprite.setPosition(x, y);
+
+        // Title settings
+        title.setFont(font);
+        title.setString("Cat Road Crosser");
+        title.setCharacterSize(50);
+        title.setFillColor(Color::White);
+        title.setPosition(150, 100);
+
+        // Start button settings
+        startButton.setSize(Vector2f(200, 80));
+        startButton.setFillColor(Color::White);
+        startButton.setOutlineThickness(7);
+        startButton.setOutlineColor(Color::Black);
+        startButton.setPosition(300, 300);
+
+        startButtonText.setFont(font);
+        startButtonText.setString("Start Game");
+        startButtonText.setCharacterSize(20);
+        startButtonText.setFillColor(Color::Black);
+        startButtonText.setPosition(335, 330);
+
+        // Restart button settings
+        restartButton.setSize(Vector2f(230, 80));
+        restartButton.setFillColor(Color::White);
+        restartButton.setOutlineThickness(7);
+        restartButton.setOutlineColor(Color::Black);
+        restartButton.setPosition(300, 300);
+
+        restartButtonText.setFont(font);
+        restartButtonText.setString("Restart Game");
+        restartButtonText.setCharacterSize(20);
+        restartButtonText.setFillColor(Color::Black);
+        restartButtonText.setPosition(333, 330);
+
+        // Quit button settings
+        quitButton.setSize(Vector2f(200, 80));
+        quitButton.setFillColor(Color::White);
+        quitButton.setOutlineThickness(7);
+        quitButton.setOutlineColor(Color::Black);
+        quitButton.setPosition(300, 400);
+
+        quitButtonText.setFont(font);
+        quitButtonText.setString("Quit");
+        quitButtonText.setCharacterSize(20);
+        quitButtonText.setFillColor(Color::Black);
+        quitButtonText.setPosition(370, 430);
     }
 
-    void move(float dt) { sprite.move(0, speed * dt); }
-    void draw(RenderWindow& window) const { window.draw(sprite); }
-    FloatRect getGlobalBounds() const { return sprite.getGlobalBounds(); }
-    void setPosition(const Vector2f& position) { sprite.setPosition(position); }
-    Vector2f getPosition() const { return sprite.getPosition(); }
-
-    FloatRect getRefinedBounds() const {
-        FloatRect bounds = sprite.getGlobalBounds();
-        return FloatRect(bounds.left + 20, bounds.top + 15, bounds.width - 2 * 20, bounds.height - 2 * 15);
-    }
-};
+>>>>>>>>> Temporary merge branch 2
